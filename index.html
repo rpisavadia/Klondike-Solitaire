@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klondike Solitaire</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="scriptV1.js"></script>
+</head>
+<body>
+    <p id="viewport-width"></p>
+    <div class="game-container">
+        <!-- Header section for score, timer, and controls -->
+        <header class="game-header">
+            <div class="score-timer">
+                <div class="score">Score: <span id="score">0</span></div>
+                <div class="timer">Time: <span id="timer">00:00</span></div>
+            </div>
+            <div class="game-controls">
+                <button id="new-game">New Game</button>
+                <button id="undo">Undo</button>
+                <label for="draw-mode">Draw Mode:</label>
+                <select id="draw-mode">
+                    <option value="1">1 Card</option>
+                    <option value="3">3 Cards</option>
+                </select>
+            </div>
+        </header>
+
+        <!-- Game board: Stock, waste, foundations, and tableau -->
+        <main class="game-board">
+            <!-- Stock and waste piles -->
+            <div id="stock-pile" class="stock-pile">
+                <img id="refresh-icon" src="images/cards/reset-icon.png" alt="Reset Stock" style="display: none; cursor: pointer;">
+                Stock
+            </div>
+            
+            
+
+            <div id="waste-pile" class="waste-pile">Waste</div>
+            
+            <!-- Foundation piles -->
+            <div id= "foundation-1" class="foundation">F1</div>
+            <div id= "foundation-2" class="foundation">F2</div>
+            <div id= "foundation-3" class="foundation">F3</div>
+            <div id= "foundation-4" class="foundation">F4</div>
+
+            <!-- Tableau piles -->
+            <div id= "tableau-1" class="tableau">T1</div>
+            <div id= "tableau-2" class="tableau">T2</div>
+            <div id= "tableau-3" class="tableau">T3</div>
+            <div id= "tableau-4" class="tableau">T4</div>
+            <div id= "tableau-5" class="tableau">T5</div>
+            <div id= "tableau-6" class="tableau">T6</div>
+            <div id= "tableau-7" class="tableau">T7</div>
+        </main>
+
+        <!-- Footer for any additional options -->
+        <footer class="game-footer">
+            <p>Klondike Solitaire - Accessible Version</p>
+        </footer>
+    </div>
+</body>
+</html>

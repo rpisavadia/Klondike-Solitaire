@@ -1,0 +1,270 @@
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #2E7D32; /* Green felt background for the dealer table feel */
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.game-container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 10px;
+    width: 100%; /* Ensure the container spans the full width */
+    max-width: 1920px; /* Set a maximum width for desktop */
+    height: 100vh;
+    background-color: #2E7D32;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden; /* Prevent gameboard from overflowing */
+    margin: 0 auto; /* Center the game container */
+}
+
+/* Header (Score, Timer, and Controls) */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    font-size: 1.2rem;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.score-timer, .game-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+button {
+    font-size: 1rem;
+    padding: 8px 12px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex-shrink: 0; /* Prevent buttons from shrinking too much */
+}
+
+button:hover {
+    background-color: #d32f2f;
+}
+
+select {
+    font-size: 1rem;
+    padding: 5px;
+}
+
+/* Game board grid layout: 7 columns and 2 rows */
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 columns */
+    grid-template-rows: 1fr 2fr; /* adjust second row to be taller */
+    gap: 10px; /* Consistent gap between piles */
+    padding: 0 20px;
+    max-width: 100%; /* Ensure the board doesn't overflow */
+    height: calc(100vh - 150px); /* Adjust the height to make room */
+    overflow-y: visible; /* Allow vertical overflow for long card stacks */
+}
+
+/* Card sizes based on viewport width */
+.stock-pile, .waste-pile, .foundation, .tableau {
+    width: 12vw; /* Make cards responsive to viewport */
+    max-width: 180px; /* Set a max width to control size on larger screens */
+    height: auto;
+    aspect-ratio: 7 / 10; /* Maintain card proportion */
+    background-color: lightgrey;
+    border-radius: 5px;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    
+}
+.stock-pile img {
+    width: 100%; /* Adjust this as needed */
+    display: block;
+}
+#refresh-icon {
+    width: 100%; /* Adjust to fit within the stock pile */
+    height: 202px; /* Maintain aspect ratio */
+    border-radius: 5px; /* Ensure the same border radius */
+    position: absolute; /* To ensure it sits above any card or background */
+    display: none; /* It will be displayed when stock is empty */
+}
+/* Transparent background when a card is placed on any pile */
+.has-card {
+    background-color: transparent; /* Transparent when a card is placed */
+}
+
+/* Card element styling */
+/* Reduce card stack offset in JavaScript */
+.card {
+    position: absolute;
+    width: 100%;
+    top: 0;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 7 / 10;
+}
+/* .card {
+    position: absolute; /* Ensure absolute positioning for stacking in tableau */
+    /* width: 100%; /* Ensure the card takes up the full width of the pile */
+    /* height: auto; Maintain card's aspect ratio automatically */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* top: 0; Start at the top of the pile */
+    /* left: 0; */ 
+/* } */
+
+/* Card images */
+/* .card img { */
+    /* width: 100%; Ensure the image fits the card container */
+    /* height: auto; Maintain aspect ratio */
+    /* object-fit: cover; Keep the image aspect ratio intact */
+    /* border-radius: 5px; */
+/* }  */
+/* Row 1 (Stock, Waste, Foundations) */
+.stock-pile {
+    grid-column: 1 / 2; /* First column */
+    grid-row: 1 / 2; /* First row */
+}
+
+.waste-pile {
+    grid-column: 2 / 3; /* Second column */
+    grid-row: 1 / 2; /* First row */
+}
+
+.foundation:nth-child(3) {
+    grid-column: 4 / 5; /* Start at column 4 */
+    grid-row: 1 / 2; /* First row */
+}
+
+.foundation:nth-child(4) {
+    grid-column: 5 / 6;
+    grid-row: 1 / 2;
+}
+
+.foundation:nth-child(5) {
+    grid-column: 6 / 7;
+    grid-row: 1 / 2;
+}
+
+.foundation:nth-child(6) {
+    grid-column: 7 / 8;
+    grid-row: 1 / 2;
+}
+
+.tableau {
+    margin-bottom: 20px;
+}
+/* Row 2 (Tableau, all in columns 1-7) */
+.tableau:nth-child(7) {
+    grid-column: 1 / 2; /* Under Stock */
+    grid-row: 2 / 3; /* Second row */
+}
+
+.tableau:nth-child(8) {
+    grid-column: 2 / 3; /* Under Waste */
+    grid-row: 2 / 3;
+}
+
+.tableau:nth-child(9) {
+    grid-column: 3 / 4; /* Empty space */
+    grid-row: 2 / 3;
+}
+
+.tableau:nth-child(10) {
+    grid-column: 4 / 5; /* Under Foundation 1 */
+    grid-row: 2 / 3;
+}
+
+.tableau:nth-child(11) {
+    grid-column: 5 / 6; /* Under Foundation 2 */
+    grid-row: 2 / 3;
+}
+
+.tableau:nth-child(12) {
+    grid-column: 6 / 7; /* Under Foundation 3 */
+    grid-row: 2 / 3;
+}
+
+.tableau:nth-child(13) {
+    grid-column: 7 / 8; /* Under Foundation 4 */
+    grid-row: 2 / 3;
+}
+
+/* Footer */
+.game-footer {
+    text-align: center;
+    padding: 0;
+    background-color: #333;
+    color: white;
+    font-size: 1rem;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For larger screens (above 1920px) */
+@media (min-width: 1921px) {
+    .game-board {
+        max-width: 1920px;
+    }
+}
+
+/* Handle scaling on smaller screens, but keep the 7 columns */
+@media (max-width: 1200px) {
+    .game-board {
+        transform: scale(0.9); /* Scale down the entire gameboard */
+        transform-origin: top center; /* Maintain centering */
+    }
+
+    .game-header {
+        font-size: 1rem; /* Reduce font size for header */
+    }
+
+    button, select {
+        font-size: 0.9rem; /* Adjust button and select sizes */
+    }
+}
+
+@media (max-width: 768px) {
+    .game-board {
+        transform: scale(0.9); /* Further scale down for tablets */
+        transform-origin: top center;
+    }
+
+    .game-header {
+        font-size: 0.9rem; /* Further reduce font size */
+    }
+
+    button, select {
+        font-size: 0.8rem; /* Adjust button and select sizes */
+    }
+}
+
+@media (max-width: 480px) {
+    .game-board {
+        transform: scale(0.8); /* Shrink further for mobile */
+        transform-origin: top center;
+    }
+
+    .game-header {
+        font-size: 0.8rem; /* Further reduce font size */
+    }
+
+    button, select {
+        font-size: 0.7rem; /* Adjust button and select sizes */
+    }
+}
+
